@@ -21,7 +21,8 @@ server.use("/api/health", require("./src/routes/healthRoute"));
 server.use(notFoundHandler);
 server.use(errorHandler);
 
-server.listen(port, hostname, async () => {
-  await connectDB();
+connectDB();
+
+server.listen(port, hostname, () => {
   console.log(`server running @ http://${hostname}:${port}`);
 });
