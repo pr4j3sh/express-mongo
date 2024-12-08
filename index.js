@@ -1,27 +1,30 @@
 const express = require("express");
-const connectDB = require("./src/database");
 const {
   errorHandler,
   corsHandler,
   logHandler,
   notFoundHandler,
+  mongoHandler,
 } = require("exhandlers");
 
 const port = process.env.PORT;
 const hostname = process.env.HOSTNAME;
+const origins = process.env.ORIGINS;
+const uri = process.env.MONGO_URI;
 
 const server = express();
 
-server.use(corsHandler());
 server.use(express.json());
-server.use(logHandler);
+server.use(corsHandler(origins));
+server.use(logHandler());
 
 server.use("/api/health", require("./src/routes/healthRoute"));
+server.use("/api/auth", require("./src/routes/authRoutes"));
 
 server.use(notFoundHandler);
 server.use(errorHandler);
 
-connectDB();
+mongoHandler(uri);
 
 server.listen(port, hostname, () => {
   console.log(`server running @ http://${hostname}:${port}`);
