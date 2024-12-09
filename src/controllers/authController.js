@@ -20,7 +20,6 @@ const register = asyncHandler(async (req, res) => {
   if (!hashedPassword) {
     throw new Error("Failed to create a password hash.");
   }
-  console.log(hashedPassword);
 
   const user = await User.create({
     username,
@@ -34,4 +33,12 @@ const register = asyncHandler(async (req, res) => {
   res.status(201).json({ success: true, user: user });
 });
 
-module.exports = { register };
+const login = asyncHandler(async (req, res) => {});
+
+const getToken = asyncHandler(async (req, res) => {});
+
+const verifyEmail = asyncHandler(async (req, res) => {});
+
+const resetPassword = asyncHandler(async (req, res) => {});
+
+module.exports = { register, login, getToken, verifyEmail, resetPassword };

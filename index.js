@@ -21,6 +21,7 @@ server.use(logHandler());
 server.use("/api/health", require("./src/routes/healthRoute"));
 server.use("/api/auth", require("./src/routes/authRoutes"));
 server.use("/api/user", require("./src/routes/userRoutes"));
+server.use("/api/posts", require("./src/routes/postRoutes"));
 
 server.use(notFoundHandler);
 server.use(errorHandler);

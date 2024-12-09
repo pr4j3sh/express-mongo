@@ -15,6 +15,10 @@ const userSchema = mongoose.Schema(
       required: true,
       unique: true,
     },
+    emailVerified: {
+      type: Boolean,
+      default: false,
+    },
     password: {
       type: String,
       required: true,
@@ -27,10 +31,10 @@ const userSchema = mongoose.Schema(
       enum: ["user", "admin"],
       default: "user",
     },
-    resetPasswordToken: {
+    token: {
       type: String,
     },
-    resetPasswordExpires: {
+    tokenExpiry: {
       type: Date,
     },
   },
